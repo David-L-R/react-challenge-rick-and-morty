@@ -1,5 +1,5 @@
 import React from "react";
-import ItemTooltip from "../Card/ItemTooltip";
+import ItemTooltip from "./ItemTooltip";
 
 export const ItemContainer = ({ children, items }) => {
   return (
