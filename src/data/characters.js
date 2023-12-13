@@ -1,4 +1,4 @@
-const characters = [
+export const characters = [
   {
     full_name: "Rick Sanchez",
     super_powers: [
