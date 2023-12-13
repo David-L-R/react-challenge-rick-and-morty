@@ -41,10 +41,6 @@ nav button:active {
   background: darkgreen;
 }
 
-.react-tooltip {
-  font-size: 12px;
-}
-
 .card {
   background: white;
   border-radius: 4px;
@@ -53,11 +49,16 @@ nav button:active {
   width: 300px;
 }
 
+.card .react-tooltip {
+  font-size: 12px;
+}
+
 .card .image-container {
   height: 250px;
   background: #eee;
   border-radius: 4px 4px 0 0;
   overflow: hidden;
+  position: relative;
   margin-bottom: 16px;
 }
 
@@ -100,7 +101,7 @@ h3 {
   padding: 8px 16px 8px 0;
 }
 
-.card .button-container button {
+.card button {
   background-color: transparent;
   border: none;
   outline: none;
@@ -109,24 +110,34 @@ h3 {
   padding: 8px 16px;
 }
 
-.card .button-container .icon-button {
-  font-size: 16px;
+.card .icon-button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
 }
 
-.card .button-container .icon-button:hover {
+.card .icon-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.card .icon-button:hover {
   transform: scale(1.25);
 }
 
-.card .button-container .icon-button:active {
+.card .icon-button:active {
   transform: scale(1);
 }
 
-.card .button-container .secondary-button {
+.card .secondary-button {
   color: red;
   font-weight: 700;
 }
 
-.card .button-container .secondary-button:active {
+.card .secondary-button:active {
   text-decoration: none;
   border-radius: 8px;
   transform: scale(0.9);

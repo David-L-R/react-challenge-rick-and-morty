@@ -16,6 +16,12 @@ function App() {
         <div className='card'>
           <div className='image-container'>
             <img src='images/Rick Sanchez.jpeg' className='cardImage' alt='' />
+            <button className='icon-button'>
+              <img src='/icons/heart-empty.png' alt='heart-empty' />
+            </button>
+            {/* <button className='icon-button'>
+              <img src='/icons/heart-fill.png' alt='heart-fill' />
+            </button> */}
           </div>
           <div className='card-body'>
             <h2>Rick Sanchez</h2>
@@ -60,7 +66,6 @@ function App() {
           </div>
           <div className='button-container'>
             <button className='secondary-button'>Remove</button>
-            <button className='icon-button'>❤️</button>
           </div>
         </div>
       </section>
