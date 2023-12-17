@@ -6,7 +6,7 @@ const Card = ({ character }) => {
   const { full_name, super_powers, weaknesses } = character;
 
   return (
-    <div className='card'>
+    <div className='card' key={character.full_name}>
       <Image fullName={full_name} />
       <Body
         fullName={full_name}
