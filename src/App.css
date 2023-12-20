@@ -26,8 +26,28 @@ nav {
   height: 80px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   gap: 20px;
+}
+
+.search {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+select {
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+form {
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 nav input {
