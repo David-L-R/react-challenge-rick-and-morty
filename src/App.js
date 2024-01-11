@@ -6,6 +6,7 @@ import { Card } from "./components";
 function App() {
   const [characters, setCharacters] = useState([]); // consistent state
   const [filteredCharacters, setFilteredCharacters] = useState([]);
+  const [searchCategory, setSearchCategory] = useState("");
   const [search, setSearch] = useState("");
   const [favorites, setFavorites] = useState([]);
 
@@ -70,31 +71,29 @@ function App() {
       const isInString = (power) =>
         power.name.toLowerCase().includes(search.toLowerCase()); // O(n)
 
-      // const strings = [
-      //   full_name,
-      //   ...super_powers.map((object) => Object.values(object)).flat(), // O(2n) => O(n)
-      //   ...weaknesses.map((object) => Object.values(object)).flat(), // O(2n) => O(n)
-      // ];
+      const isName =
+        (searchCategory === "name" || searchCategory === "") &&
+        full_name.toLowerCase().includes(search.toLowerCase());
 
-      // // strings => O(4n) => O(n)
+      const isSuperPowers =
+        (searchCategory === "super_powers" || searchCategory === "") &&
+        super_powers.some(isInString);
 
-      // console.log(strings);
-
-      // return strings.some((string) =>
-      //   string.toLowerCase().includes(search.toLowerCase())
-      // ); // some === O(n) // includes === O(n) // O(n^2)
-
-      // // O(n^2) + O(4n) => O(n^2)
+      const isWeaknesses =
+        (weaknesses.some(isInString) || searchCategory === "") &&
+        searchCategory === "weaknesses";
 
       return (
-        full_name.toLowerCase().includes(search.toLowerCase()) || // O(n)
-        super_powers.some(isInString) || // O(n^2)
-        weaknesses.some(isInString) // O(n^2)
+        isName || // O(n)
+        isSuperPowers || // O(n^2)
+        isWeaknesses // O(n^2)
       );
-
-      // O(n) + O(n^2) + O(n^2) => O(n) + O(n^2) => O(n^2)
     });
     setFilteredCharacters(filteredCharacters);
+  };
+
+  const changeSearchCategory = (e) => {
+    setSearchCategory(e.target.value);
   };
 
   const showView = () => {
@@ -127,11 +126,11 @@ function App() {
       <nav>
         <div></div>
         <div className='search'>
-          <select>
-            <option>Select...</option>
-            <option>Name</option>
-            <option>Superpowers</option>
-            <option>Weaknesses</option>
+          <select onChange={changeSearchCategory} value={searchCategory}>
+            <option value=''>Select...</option>
+            <option value='name'>Name</option>
+            <option value='super_powers'>Superpowers</option>
+            <option value='weaknesses'>Weaknesses</option>
           </select>
           <form onSubmit={handleSearch}>
             <input onChange={handleInput} value={search} />
