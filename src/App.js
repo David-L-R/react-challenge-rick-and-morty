@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { characters as charactersRaw } from "./data/characters";
+// import { characters as charactersRaw } from "./data/characters";
 import { Card } from "./components";
 
 function App() {
@@ -11,24 +11,11 @@ function App() {
 
   const [view, setView] = useState("all");
 
-  useEffect(
-    () => {
-      setTimeout(() => {
-        setCharacters(charactersRaw);
-      }, 2000);
-    },
-    [
-      /* dependencies */
-    ]
-  );
+  // const searchEl = useRef(null);
 
   const changeView = (event) => {
     setView(event.target.value);
   };
-
-  useEffect(() => {
-    console.log(favorites);
-  }, [favorites]);
 
   const addToFavorites = (name) => {
     console.log("add to fav: ", name);
@@ -122,11 +109,39 @@ function App() {
     );
   };
 
+  useEffect(() => {
+    const fetchChar = async () => {
+      const response = await fetch(
+        "https://mocki.io/v1/7177a5d4-b722-42c6-b1d2-814a4a2556f1"
+      );
+
+      const data = await response.json();
+
+      console.log(data);
+
+      setCharacters(data.characters);
+    };
+
+    fetchChar();
+  }, []);
+
+  // useEffect(() => {
+  //   searchEl.addEventListener("click", () => {
+  //     searchEl.current.classList.add("active");
+  //   });
+
+  //   return () => {
+  //     searchEl.removeEventListener("click", () => {
+  //       searchEl.current.classList.add("active");
+  //     });
+  //   };
+  // }, []);
+
   return (
     <div className='App'>
       <nav>
         <div></div>
-        <div className='search'>
+        <div className='search' /* ref={searchEl} */>
           <select>
             <option>Select...</option>
             <option>Name</option>
